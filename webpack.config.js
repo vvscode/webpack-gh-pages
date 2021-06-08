@@ -1,10 +1,16 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+const PREFIX = "/webpack-gh-pages/";
+
 module.exports = {
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     port: 9000,
+    historyApiFallback: true,
+  },
+  output: {
+    publicPath: PREFIX,
   },
   entry: "./src/index.ts",
   mode: "development",
@@ -27,6 +33,10 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "public/index.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: "public/index.html",
+      filename: "404.html",
     }),
   ],
 };
